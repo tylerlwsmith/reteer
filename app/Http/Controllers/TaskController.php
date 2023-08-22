@@ -106,31 +106,31 @@ class TaskController extends Controller
             return $value ?? '';
         });
         $values = new ValueRange(['values' => [
-            $value_array
+            $value_array,
         ]]);
 
         $options = ['valueInputOption' => 'RAW'];
 
         $spreadsheetValues->append(config('sheets.id'), config('sheets.names.tasks'), $values, $options);
-        // $spreadsheetValues->append(config('sheets.id'), config('sheets.names.backup'), $values, $options);
+        $spreadsheetValues->append(config('sheets.id'), config('sheets.names.backup'), $values, $options);
 
         // save log entry
-        // $values_string = '["' . implode(',"', $value_array) . ']';
-        // dump($values_string);
-        // $log_values = new ValueRange(['values' => [
-        //     [
-        //         'web app',
-        //         'Task Tracking for Sign Up',
-        //         now(),
-        //         'PLACEHOLDER',
-        //         $values_string,
-        //         $task->google_sheets_id,
-        //     ],
-        // ]]);
+        $values_string = '["' . implode(',"', $value_array) . ']';
+        dump($values_string);
+        $log_values = new ValueRange(['values' => [
+            [
+                'web app',
+                'Task Tracking for Sign Up',
+                now(),
+                'PLACEHOLDER',
+                $values_string,
+                $task->google_sheets_id,
+            ],
+        ]]);
 
-        // $spreadsheetValues->append(config('sheets.id'), config('sheets.names.log'), $log_values, $options);
+        $spreadsheetValues->append(config('sheets.id'), config('sheets.names.log'), $log_values, $options);
 
-        // dd($log_values);
+        dd($log_values);
 
         return redirect()->route('tasks.confirmCreate', $task);
     }
