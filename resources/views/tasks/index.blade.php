@@ -4,16 +4,23 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Tasks') }}
             </h2>
+<<<<<<< HEAD
             <a href="{{ route('tasks.create') }}" class="text-white bg-blue-500 px-6 py-2 rounded font-bold">
                 {{ __('Create Task') }}
             </a>
+=======
+            <div class="text-white bg-blue-500 px-6 py-2 rounded font-bold">
+                <a href="{{ route('tasks.create') }}">
+                    {{ __('Create Task') }}
+                </a>
+            </div>
+>>>>>>> d28eb4e5d417fc73c0cd7f1abb211f04c0386f46
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="mb-10 max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div
-                class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900">
                 {{ __("There are {$count} Unassigned Tasks") }}
             </div>
         </div>
