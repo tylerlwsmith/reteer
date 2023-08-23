@@ -4,17 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Google\Client;
-<<<<<<< HEAD
 use Google\Service\Sheets;
 use Google\Service\Sheets\ValueRange;
-=======
-use Google\Service\Script\Content;
->>>>>>> d28eb4e5d417fc73c0cd7f1abb211f04c0386f46
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 class TaskController extends Controller
@@ -86,16 +79,13 @@ class TaskController extends Controller
 
         $task->save();
 
-<<<<<<< HEAD
         // save task to google drive
         $client = new Client();
         $client->setApplicationName('reteer-app');
         $client->setScopes('https://www.googleapis.com/auth/spreadsheets');
         $client->setAuthConfig(base_path('credentials.json'));
-=======
         $task->action = 'create';
 
->>>>>>> d28eb4e5d417fc73c0cd7f1abb211f04c0386f46
 
         $spreadsheet = new Sheets($client);
         $spreadsheetValues = $spreadsheet->spreadsheets_values;
@@ -117,6 +107,7 @@ class TaskController extends Controller
         });
         $values = new ValueRange(['values' => [
             $value_array,
+
         ]]);
 
         $options = ['valueInputOption' => 'RAW'];
